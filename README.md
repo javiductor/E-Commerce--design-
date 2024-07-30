@@ -10,8 +10,6 @@
 <li>Empty cart design</li>
 <li>Add to cart functionality</li>
 <li>Remove from cart functionality</li>
-<li></li>
-
 </ul>
 <p>This project is part of my coding journey. I have always been a huge fan the brand Lestrange and loved their website.
 I reacreated part of their site using: HTML, CSS & Javascript and made a few changes to the design.</p>
