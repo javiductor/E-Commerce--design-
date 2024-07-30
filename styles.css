@@ -35,19 +35,37 @@ nav {
   align-items: center;
 }
 
-/* .btn--menu {
-  font-size: 12px;
+.btn--menu {
+  font-size: 13px;
   font-weight: 300;
   background-color: white;
   border: none;
-  padding-right: 20px;
+  padding-right: 30px;
   cursor: pointer;
-} */
+}
 
 .logo {
   font-size: 18px;
   font-weight: 700;
   margin: 0;
+}
+
+/* Mobile menu styles */
+.btn--mobile-menu {
+  display: none;
+  font-size: 24px;
+}
+
+/* Mobile Menu Hidden by Default */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  text-align: left;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  background-color: white;
 }
 
 /* Products - All */
