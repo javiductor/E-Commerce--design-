@@ -1,5 +1,4 @@
-const API_URL =
-  "https://clothing-brand-online-shop.netlify.app/items/products/";
+const API_URL = "https://directus.aikedejongste.nl/items/products/";
 
 //////////////////////// Fetch products from the API ////////////////
 ////////////////////////////////////////////////////////////////////
@@ -40,7 +39,7 @@ function displayProducts(products) {
     productImg.className = "product-img";
     productImg.setAttribute(
       "src",
-      "https://clothing-brand-online-shop.netlify.app/assets/" + product.image
+      "https://directus.aikedejongste.nl/assets/" + product.image
     );
 
     productLink.appendChild(productImg);
@@ -190,8 +189,8 @@ function showModal(product) {
       <button class="modal-button" data-product-id="${product.id}">Add to Cart</button>
      </div>
      <div class="modal-right">
-       <img class="modal-image" src="https://clothing-brand-online-shop.netlify.app/${product.img_2}" alt="${product.name}" />
-       <img class="modal-image" src="https://clothing-brand-online-shop.netlify.app/${product.image}" alt="${product.name}" />
+       <img class="modal-image" src="https://directus.aikedejongste.nl/assets/${product.img_2}" alt="${product.name}" />
+       <img class="modal-image" src="https://directus.aikedejongste.nl/assets/${product.image}" alt="${product.name}" />
      </div>
     </div>
   `;
@@ -289,7 +288,7 @@ async function showCart() {
             }">Remove</a>
           </div>
           <div class="cart-product-right">
-            <img class="cart-image" src="https://clothing-brand-online-shop.netlify.app/assets/${
+            <img class="cart-image" src="https://directus.aikedejongste.nl/assets/${
               product.img_2 || "default.jpg"
             }" alt="${product.name || "Unknown Product"}" />
           </div>
