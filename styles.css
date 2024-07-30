@@ -56,7 +56,6 @@ nav {
   font-size: 24px;
 }
 
-/* Mobile Menu Hidden by Default */
 .mobile-menu {
   display: none;
   flex-direction: column;
@@ -311,7 +310,7 @@ nav {
   float: left;
   padding-top: 5px;
   font-size: 28px;
-  font-weight: bold;
+  font-weight: 200;
 }
 
 .close:hover,
@@ -339,7 +338,7 @@ nav {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  position: relative; /* Add this to allow positioning of the close button */
+  position: relative;
 }
 
 .cart-content {
@@ -473,12 +472,12 @@ nav {
 }
 
 .cart-close {
-  position: absolute; /* Position it absolutely within the cart-container */
-  right: 10px; /* Adjust as necessary */
-  top: 10px; /* Adjust as necessary */
+  position: absolute;
+  right: 10px;
+  top: 10px;
   color: black;
   font-size: 28px;
-  font-weight: 500;
+  font-weight: 200;
   z-index: 1000;
 }
 

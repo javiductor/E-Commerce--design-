@@ -20,8 +20,8 @@ async function fetchProducts() {
   }
 }
 
-////////////////////////// Display Products Function //////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+////////////////////////// Display Products Function ///////////////
+///////////////////////////////////////////////////////////////////
 function displayProducts(products) {
   const productsContainer = document.getElementById("products-container");
   productsContainer.innerHTML = "";
@@ -136,8 +136,8 @@ async function fetchProductDetails(productId) {
   }
 }
 
-//////////////////////// Load products when the document is ready ///////////////
-/////////////////////////////////////////////////////////////////////////////////
+///////////// Load products when the document is ready ///////////////
+////////////////////////////////////////////////////////////////////
 document.addEventListener("DOMContentLoaded", async () => {
   const productsContainer = document.getElementById("products-container");
   productsContainer.innerHTML = "Loading products...";
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const cartButton = document.getElementById("btn--cart");
       if (cartButton) {
         cartButton.addEventListener("click", function () {
-          console.log("Cart button clicked"); // Log to check if the button is clicked
+          console.log("Cart button clicked");
           showCart();
         });
       } else {
@@ -221,7 +221,7 @@ function showModal(product) {
 ////////////////////////////////// Add Product to cart  //////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
 
-let clickedProducts = []; // Array to store clicked product IDs
+let clickedProducts = [];
 
 function addProductToCart(productId) {
   clickedProducts.push(productId);
@@ -246,7 +246,7 @@ async function showCart() {
   const productDetails = await Promise.all(
     clickedProducts.map(async (productId) => {
       const product = await fetchProductDetails(productId);
-      return product || {}; // Fallback to empty object if product is not found
+      return product || {};
     })
   );
 
