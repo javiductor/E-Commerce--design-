@@ -453,7 +453,7 @@ nav {
   background-color: black;
   color: white;
   font-size: 14px;
-  margin: auto 20px 20px 20px;
+  margin: 0px 20px 20px 20px;
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -466,6 +466,17 @@ nav {
   font-size: 14px;
   padding: 10px;
   margin: 0px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart-continue-button {
+  background-color: rgb(157, 205, 253);
+  color: black;
+  font-size: 14px;
+  padding: 10px;
+  margin: auto 20px 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;

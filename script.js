@@ -203,9 +203,9 @@ function showModal(product) {
     modal.style.display = "none";
   };
 
-  // Add event listener to close modal on outside click
+  // Add event listener to product close modal on outside click
   window.onclick = function (event) {
-    if (event.target == modal) {
+    if (event.target == modal || cart) {
       modal.style.display = "none";
     }
   };
@@ -215,6 +215,7 @@ function showModal(product) {
   modalButton.addEventListener("click", function () {
     const productId = this.dataset.productId;
     addProductToCart(productId);
+    showCart();
   });
 }
 
@@ -253,65 +254,79 @@ async function showCart() {
   // Check if cart is empty and update display accordingly
   if (productDetails.length === 0) {
     cartContent.innerHTML = `
-    <div class="cart-container">
-      <div class="voucher-banner-cart">
-        <p class="voucher-text">Use code XYZ123 for a 10% discount on your purchase!</p>
-      </div>
-      <h3 class="cart-title">CART</h3>
-      <p class="empty-cart"> YOU HAVEN’T ADDED ANYTHING, YET.</p>
-      <button class="cart-button-empty">Start shopping</button>
-    </div>`;
+      <div class="cart-container">
+        <div class="voucher-banner-cart">
+          <p class="voucher-text">Use code XYZ123 for a 10% discount on your purchase!</p>
+        </div>
+        <h3 class="cart-title">CART</h3>
+        <p class="empty-cart"> YOU HAVEN’T ADDED ANYTHING, YET.</p>
+        <button class="cart-button-empty">Start shopping</button>
+      </div>`;
   } else {
     cartContent.innerHTML = `
-    <div class="cart-container">
-      <div class="voucher-banner-cart">
-        <p class="voucher-text">Use code XYZ123 for a 10% discount on your purchase!</p>
-      </div>
-      <h3 class="cart-title">CART</h3>
-      ${productDetails
-        .map(
-          (product) => `
-        <div class="cart-item">
-          <div class="cart-product-left">
-            <h3 class="product-name-cart">${
-              product.name || "Unknown Product"
-            }</h3>
-            <p class="product-material-cart">${
-              product.material || "Unknown Material"
-            }</p>
-            <p class="product-fit-cart">${product.fit || "Unknown Fit"}</p>
-            <p class="product-price-cart">${
-              product.price || "Unknown Price"
-            }</p>
-            <a href="#" class="remove-link" data-product-id="${
-              product.id
-            }">Remove</a>
-          </div>
-          <div class="cart-product-right">
-            <img class="cart-image" src="https://directus.aikedejongste.nl/assets/${
-              product.img_2 || "default.jpg"
-            }" alt="${product.name || "Unknown Product"}" />
-          </div>
-        </div>`
-        )
-        .join("")}
-      <div class="cart-message">
-        <p class="cart-carbon">We've balanced the carbon footprint of this product</p>
-        <a href="#" class="learn-link">Learn More</a>
-      </div>
-      <button class="cart-button">Checkout</button>
-    </div>`;
+      <div class="cart-container">
+        <div class="voucher-banner-cart">
+          <p class="voucher-text">Use code XYZ123 for a 10% discount on your purchase!</p>
+        </div>
+        <h3 class="cart-title">CART</h3>
+        ${productDetails
+          .map(
+            (product) => `
+          <div class="cart-item">
+            <div class="cart-product-left">
+              <h3 class="product-name-cart">${
+                product.name || "Unknown Product"
+              }</h3>
+              <p class="product-material-cart">${
+                product.material || "Unknown Material"
+              }</p>
+              <p class="product-fit-cart">${product.fit || "Unknown Fit"}</p>
+              <p class="product-price-cart">${
+                product.price || "Unknown Price"
+              }</p>
+              <a href="#" class="remove-link" data-product-id="${
+                product.id
+              }">Remove</a>
+            </div>
+            <div class="cart-product-right">
+              <img class="cart-image" src="https://directus.aikedejongste.nl/assets/${
+                product.img_2 || "default.jpg"
+              }" alt="${product.name || "Unknown Product"}" />
+            </div>
+          </div>`
+          )
+          .join("")}
+        <div class="cart-message">
+          <p class="cart-carbon">We've balanced the carbon footprint of this product</p>
+          <a href="#" class="learn-link">Learn More</a>
+        </div>
+        <button class="cart-continue-button">Continue Shopping</button>
+        <button class="cart-button">Checkout</button>
+      </div>`;
   }
 
   cart.style.display = "block";
 
-  // Add event listener to close button
-  const cartCloseButton = cart.querySelector(".cart-close");
-  cartCloseButton.onclick = function () {
+  function closeCart() {
     cart.style.display = "none";
-  };
+  }
 
-  // Add event listener to close modal on outside click
+  const cartCloseButton = cart.querySelector(".cart-close");
+  if (cartCloseButton) {
+    cartCloseButton.onclick = closeCart;
+  }
+
+  const cartContinueButton = cart.querySelector(".cart-continue-button");
+  if (cartContinueButton) {
+    cartContinueButton.onclick = closeCart;
+  }
+
+  const cartButtonEmpty = cart.querySelector(".cart-button-empty");
+  if (cartButtonEmpty) {
+    cartButtonEmpty.onclick = closeCart;
+  }
+
+  // Add event listener to close cart modal on outside click
   window.onclick = function (event) {
     if (event.target == cart) {
       cart.style.display = "none";
@@ -329,9 +344,4 @@ async function showCart() {
       showCart();
     });
   });
-
-  const cartButtonEmpty = cart.querySelector(".cart-button-empty");
-  cartButtonEmpty.onclick = function () {
-    cart.style.display = "none";
-  };
 }
