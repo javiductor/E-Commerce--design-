@@ -510,6 +510,54 @@ nav {
   font-weight: 500;
 }
 
+/* ---------- Filter ------------ */
+
+.filter-container {
+  display: flex;
+  flex: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.filter-left {
+  display: flex;
+  float: left;
+}
+
+.filter-right {
+  float: right;
+  display: flex;
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.filter-button,
+.reset-button {
+  background-color: white;
+  color: black;
+  text-transform: uppercase;
+  border: 1px solid #8e8e8e;
+  font-size: 11px;
+  font-weight: 300;
+  padding: 10px 30px;
+  margin: 0px 10px 30px 10px;
+  border-radius: 0px;
+  cursor: pointer;
+}
+
+.filter-button-2 {
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 300;
+  padding: 10px 130px 10px 10px;
+  margin: 0px 10px 30px 10px;
+  cursor: pointer;
+}
+
 /* ---------- Media Queries ----------- */
 @media (max-width: 1200px) {
   .modal-content {

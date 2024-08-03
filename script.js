@@ -20,8 +20,8 @@ async function fetchProducts() {
   }
 }
 
-////////////////////////// Display Products Function ///////////////
-///////////////////////////////////////////////////////////////////
+////////////////////////// Display Products  ///////////////
+///////////////////////////////////////////////////////////
 function displayProducts(products) {
   const productsContainer = document.getElementById("products-container");
   productsContainer.innerHTML = "";
@@ -344,4 +344,73 @@ async function showCart() {
       showCart();
     });
   });
+}
+
+////////////////////////// Product Filter ///////////////
+////////////////////////////////////////////////////////
+
+function displayFilters() {
+  const productFilter = document.getElementById("product-filter");
+  const filterContent = document.getElementById("filter-content");
+
+  filterContent.innerHTML = `
+    <div class="filter-container">
+      <div class="filter-left">
+        <button class="filter-button" data-product_type="">All Products</button>
+        <button class="filter-button" data-product_type="Blazer">Blazers</button>
+        <button class="filter-button" data-product_type="Trousers">Trousers</button>
+        <button class="filter-button" data-product_type="Shorts">Shorts</button>
+        <button class="filter-button" data-product_type="Shirt">Shirts</button>
+        <button class="filter-button" data-product_type="Backpack">Backpacks</button>
+      </div>
+      <div class="filter-right">
+      </div>
+    </div>
+  `;
+
+  productFilter.style.display = "block";
+
+  // Add event listeners to filter buttons
+  document.querySelectorAll(".filter-button").forEach((button) => {
+    button.addEventListener("click", async function () {
+      const productType = this.dataset.product_type;
+      if (productType === "") {
+        const products = await fetchProducts();
+        displayProducts(products);
+      } else {
+        const products = await showProductType(productType);
+        displayProducts(products);
+      }
+    });
+  });
+}
+
+// Ensure DOM is loaded before calling the function
+document.addEventListener("DOMContentLoaded", () => {
+  displayFilters();
+});
+
+/// 1. Need to sent an event listener to all buttons
+/// 2. I need to pull the product type from the JSON files
+/// 3. Select the
+
+async function showProductType(productType) {
+  try {
+    const response = await fetch(
+      `${API_URL}?filter[product_type][_eq]=${productType}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error("There has been a problem with your fetch operation:", error);
+    return [];
+  }
 }
